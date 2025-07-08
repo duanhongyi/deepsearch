@@ -12,7 +12,6 @@
 import { Tabs } from '@arco-design/web-react';
 
 import { IconClose } from '@/images/deepResearch';
-import { McpContent } from '@/demo/mcp/components/Setting/McpContent';
 import { RoundContent } from '@/demo/mcp/components/Setting/RoundContent';
 import { TabsKey, useSettingDrawerStore } from '@/demo/mcp/store/ChatConfigStore/useSettingDrawerStore';
 

@@ -27,7 +27,7 @@ export const startChat = (params: {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
   headers.append('X-Csrf-Token', Cookies.get('csrfToken') || '');
-  headers.append('Authorization', `Bearer ${process.env.ARK_API_KEY}`);
+  headers.append('Authorization', `Bearer ${localStorage.getItem('apiKey') || ''}`);
   if (customHeaders) {
     Object.entries(customHeaders).forEach(([key, value]) => {
       headers.append(key, value);

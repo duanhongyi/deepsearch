@@ -23,7 +23,7 @@ interface IState {
   setDrawerCurrentTab: (tab: TabsKey) => void;
 }
 const initialState = {
-  drawerVisible: false,
+  drawerVisible: true,
   drawerCurrentTab: TabsKey.Round,
 };
 

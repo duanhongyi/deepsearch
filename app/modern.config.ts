@@ -23,7 +23,6 @@ export default defineConfig({
   },
   source: {
     globalVars: {
-      'process.env.ARK_API_KEY': process.env.ARK_API_KEY,
       'process.env.DOMAIN': process.env.DOMAIN,
       'process.env.BOT_ID': process.env.BOT_ID,
     },

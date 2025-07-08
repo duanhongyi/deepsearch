@@ -9,25 +9,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { InputNumber, Slider, Switch, Tooltip } from '@arco-design/web-react';
+import { Input, InputNumber, Slider, Tooltip } from '@arco-design/web-react';
 import { IconQuestionCircle } from '@arco-design/web-react/icon';
 
 import DeepResearchPoster from '@/demo/mcp/assets/DeepResearchPoster.png';
-import { useChatInstance } from '@/demo/mcp/hooks/useInstance';
+import { useEffect, useState } from 'react';
 import { useChatConfigStore } from '@/demo/mcp/store/ChatConfigStore/useChatConfigStore';
-import { Host } from '@/demo/mcp/types';
 
 import s from './index.module.less';
 
 export function RoundContent() {
-  const { host } = useChatInstance();
+  const [apiKey, setApiKey] = useState('');
   const {
     maxPlanningRounds,
     setMaxPlanningRounds,
-    personalized,
-    setPersonalized,
   } = useChatConfigStore();
 
+  const handleApiKeyChange = (value: string) => {
+    setApiKey(value);
+    localStorage.setItem('apiKey', value);
+  };
+
+  useEffect(() => {
+    const storedApiKey = localStorage.getItem('apiKey');
+    if (storedApiKey) {
+      setApiKey(storedApiKey);
+    }
+  }, []);
   return (
     <div className={s.drawer}>
       <main className={s.main}>
@@ -65,6 +73,19 @@ export function RoundContent() {
               onChange={setMaxPlanningRounds}
             />
           </div>
+        </div>
+        <div className={s.sliderContainer}>
+          <div className={s.title}>
+            <span>美行云大模型鉴权</span>
+            <Tooltip content="在飞书中使用美行云大模型网关申请的API密钥，它通常以sk-开头。">
+              <IconQuestionCircle className={s.iconQuestion} />
+            </Tooltip>
+          </div>
+            <Input
+              placeholder="请输入您的 API Key"
+              value={apiKey}
+              onChange={handleApiKeyChange}
+            />
         </div>
       </main>
     </div>
